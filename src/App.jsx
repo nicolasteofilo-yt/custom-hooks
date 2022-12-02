@@ -1,4 +1,14 @@
+import { useState } from "react"
+import { useLocalState } from './hooks/useLocalState';
+
 function App() {
+  const [emailInput, setEmailInput] = useState('');
+  const [, setEmail] = useLocalState('@email');
+
+  function onSave() {
+    setEmail(emailInput)
+  }
+
   return (
     <div
       style={{
@@ -16,6 +26,35 @@ function App() {
       <p style={{ display: "block", marginTop: "10px" }}>
         Deixa teu like e inscreva-se no canal :)
       </p>
+      <input
+        onChange={event => setEmailInput(event.target.value)}
+        value={emailInput}
+        style={{
+          marginTop: "20px",
+          height: "40px",
+          border: "2px solid #242526",
+          backgroundColor: "#E6E6E6",
+          borderRadius: "4px",
+          padding: "4px",
+        }}
+        type="email"
+        placeholder="Insira seu e-mail"
+      />
+      <button
+        onClick={onSave}
+        style={{
+          marginTop: "20px",
+          height: "40px",
+          border: "2px solid #242526",
+          backgroundColor: "#E6E6E6",
+          borderRadius: "4px",
+          padding: "4px",
+          cursor: "pointer",
+          widht: "100%"
+        }}
+      >
+        Salvar
+      </button>
     </div>
   );
 }
